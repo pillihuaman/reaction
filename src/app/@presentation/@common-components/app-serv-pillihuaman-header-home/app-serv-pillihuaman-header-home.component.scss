@@ -1,0 +1,24 @@
+
+@import '@nebular/theme/styles/globals';
+@import '@nebular/theme/styles/themes';
+@import "@angular/material/prebuilt-themes/indigo-pink.css";
+@import 'bootstrap/scss/mixins/breakpoints';
+@import '@nebular/theme/styles/global/breakpoints';
+
+
+.mainrdHeader {
+    display: flex;
+    width: 100%;
+    background-color: red !important;
+  
+    .logo-container {
+      cursor: pointer;
+    }
+  }
+  
+  .text-primary {
+    color: #bcb00d !important;
+  }
+  
+
+  

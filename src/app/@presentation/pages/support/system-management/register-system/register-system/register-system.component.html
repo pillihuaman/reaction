@@ -1,0 +1,42 @@
+<form [formGroup]="systemForm" class="responsive-form" (ngSubmit)="onSubmit()">
+    <div class="form-header">
+      <h3>System Management</h3>
+      <button type="button" class="close-btn" (click)="closeDialog()">
+        <nb-icon icon="x">X</nb-icon>
+      </button>
+    </div>
+  
+    <div class="form-group">
+      <input nbInput type="text" placeholder="System Name" formControlName="name" />
+      <div *ngIf="systemForm.get('name')?.invalid && systemForm.get('name')?.touched">
+        <small *ngIf="systemForm.get('name')?.errors?.['required']">Name is required.</small>
+      </div>
+    </div>
+  
+    <div class="form-group">
+      <input nbInput type="text" placeholder="Version" formControlName="version" />
+    </div>
+  
+    <div class="form-group">
+      <input nbInput type="text" placeholder="Timezone" formControlName="timezone" />
+    </div>
+  
+    <div class="form-group">
+      <mat-slide-toggle formControlName="isActive">Is Active</mat-slide-toggle>
+    </div>
+  
+    <div class="form-group">
+      <input nbInput type="email" placeholder="Contact Email" formControlName="contactEmail" />
+    </div>
+  
+    <div class="form-group">
+      <input nbInput type="text" placeholder="Support Phone" formControlName="supportPhone" />
+    </div>
+  
+    <!-- Submit and Cancel Buttons -->
+    <div class="form-group button-group">
+      <button type="submit" class="btn btn-primary" [disabled]="systemForm.invalid">Save</button>
+      <button type="button" class="btn btn-secondary" (click)="closeDialog()">Cancel</button>
+    </div>
+  </form>
+  

@@ -1,0 +1,106 @@
+<form [formGroup]="loginForm">
+    <div class="container">
+        <div class="flex-container row">
+            <div class="col-12 col-sm-6">
+                <label for="name" class="form-label">Name *</label>
+                <input type="text" nbInput fullWidth status="basic" placeholder="Name" formControlName="name">
+                <div *ngIf="f['name'].invalid && f['name'].touched" class="invalid-text">
+                    <span *ngIf="f['name'].errors?.['required']">
+                        The field is required
+                    </span>
+                    <span *ngIf="f['name'].errors?.['minlength']">
+                        The text length is plus 4
+                    </span>
+                    <span *ngIf="f['name'].errors?.['maxlength']">
+                        The text length is less than 50
+                    </span>
+                </div>
+            </div>
+
+            <div class="col-12 col-sm-6">
+                <label for="lastName" class="form-label">Last Name </label>
+                <input type="text" nbInput fullWidth status="basic" placeholder="Last Name" formControlName="lastName">
+            </div>
+
+            <div class="col-12 col-sm-6">
+                <label for="typeDocument" class="form-label">Document Identifier *</label>
+                <div class="typeCasrs">
+                    <nb-select placeholder="Document Type" [(ngModel)]="selectedItemType" formControlName="typeDocument">
+                        <nb-option value="1">DNI</nb-option>
+                        <nb-option value="2">Passport</nb-option>
+                        <nb-option value="3">Local Document</nb-option>
+                        <nb-option value="4">Driver Car</nb-option>
+                    </nb-select>
+                </div>
+            </div>
+
+            <div class="col-12 col-sm-2">
+                <label for="numTypeDocument" class="form-label">Number Type Document </label>
+                <input type="text" nbInput fullWidth status="basic" placeholder="Document type number" formControlName="numTypeDocument">
+            </div>
+
+            <div class="col-12 col-sm-2"></div>
+
+            <div class="col-12 col-sm-4">
+                <label for="password" class="form-label">Password *</label>
+                <input type="password" nbInput fullWidth status="basic" placeholder="Password" formControlName="password">
+                <div *ngIf="f['password'].invalid && f['password'].touched" class="invalid-text">
+                    <span *ngIf="f['password'].errors?.['required']">
+                        The field is required
+                    </span>
+                    <span *ngIf="f['password'].errors?.['minlength']">
+                        The text length is plus 8
+                    </span>
+                    <span *ngIf="f['password'].errors?.['maxlength']">
+                        The text length is less than 50
+                    </span>
+                </div>
+            </div>
+
+            <div class="col-12 col-sm-2"></div>
+
+            <div class="col-12 col-sm-4">
+                <label for="repeatpassword" class="form-label">Repeat Password *</label>
+                <input type="password" nbInput fullWidth status="basic" placeholder="Password" formControlName="repeatpassword">
+                <div *ngIf="f['repeatpassword'].invalid && f['repeatpassword'].touched" class="invalid-text">
+                    <span *ngIf="f['repeatpassword'].errors?.['required']">
+                        The field is required
+                    </span>
+                    <span *ngIf="f['repeatpassword'].errors?.['minlength']">
+                        The text length is plus 3
+                    </span>
+                    <span *ngIf="f['repeatpassword'].errors?.['maxlength']">
+                        The text length is less than 50
+                    </span>
+                </div>
+            </div>
+
+            <div class="col-12 col-sm-4">
+                <label for="phoneNumber" class="form-label">Mobile Phone </label>
+                <input type="text" nbInput fullWidth status="basic" placeholder="Mobile Phone" formControlName="phoneNumber">
+            </div>
+
+            <div class="col-12 col-sm-2"></div>
+
+            <div class="col-12 col-sm-4">
+                <label for="email" class="form-label">Email * </label>
+                <input type="text" nbInput fullWidth status="basic" placeholder="Email" formControlName="email">
+                <div *ngIf="f['email'].invalid && f['email'].touched" class="invalid-text">
+                    <span *ngIf="f['email'].errors?.['required']">
+                        The field is required
+                    </span>
+                    <span *ngIf="f['email'].errors?.['minlength']">
+                        The text length is plus 6
+                    </span>
+                    <span *ngIf="f['email'].errors?.['maxlength']">
+                        The text length is less than 50
+                    </span>
+                </div>
+            </div>
+        </div>
+
+        <div class="btntype">
+            <button type="submit" class="btn btn-primary" (click)="submit()" [disabled]="!(loginForm.valid)">Submit</button>
+        </div>
+    </div>
+</form>

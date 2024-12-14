@@ -1,0 +1,37 @@
+<div class="container">
+  <form [formGroup]="systemForm" class="responsive-form">
+    <div class="form-header">
+      <h3>System Management</h3>
+      <button type="button" class="close-btn" (click)="closeDialog()">X</button>
+    </div>
+
+    <div class="form-group">
+      <input nbInput type="text" placeholder="System Name" formControlName="name" />
+      <div *ngIf="systemForm.get('name')?.invalid && systemForm.get('name')?.touched">
+        <small *ngIf="systemForm.get('name')?.errors?.['required']">Name is required.</small>
+      </div>
+    </div>
+
+    <div class="form-group">
+      <input nbInput type="text" placeholder="Version" formControlName="version" />
+    </div>
+
+    <div class="form-group">
+      <mat-slide-toggle formControlName="isActive">Is Active</mat-slide-toggle>
+    </div>
+
+    <div class="form-group button-group">
+      <button type="button" class="btn btn-primary" (click)="findSystems()">Search</button>
+      <button type="submit" class="btn btn-secondary" (click)="resetForm()">Reset</button>
+    </div>
+  </form>
+
+  <app-table-datasource
+    [datas]="datas"
+    [defaultColumns]="defaultColumnsInput"
+    (pageChange)="onPageChange($event)"
+    (deleteAction)="deleteSystem($event)"
+    (editAction)="editSystem($event)"
+    [typeOfSearch]="typeOfSearch"
+  ></app-table-datasource>
+</div>

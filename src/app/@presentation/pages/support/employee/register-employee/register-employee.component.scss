@@ -1,0 +1,83 @@
+/* General styling for form groups */
+.form-group {
+  margin-bottom: 1rem; /* Espaciado entre controles */
+  display: flex;
+  flex-direction: column;
+}
+
+/* Make inputs larger and more readable */
+.form-group input[nbInput] {
+  font-size: 1.2rem; /* Tamaño de texto */
+  padding: 0.75rem; /* Espaciado interno */
+  border-radius: 8px; /* Bordes redondeados */
+  width: 100%; /* Asegura que ocupen todo el ancho */
+  max-width: 500px; /* Opcional: ancho máximo */
+}
+
+/* Date picker specific adjustments */
+.nb-date-timepicker {
+  font-size: 1.2rem; /* Ajusta el tamaño de la fuente */
+}
+
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+  .form-group {
+    margin-bottom: 1rem;
+  }
+
+  .form-group input[nbInput] {
+    font-size: 1rem;
+    padding: 0.5rem; /* Menor padding en pantallas pequeñas */
+    max-width: 100%; /* Ocupa todo el ancho */
+  }
+
+}
+
+
+
+
+.button-group {
+  display: flex;
+  justify-content: center; /* Centra los botones de forma horizontal */
+  gap: 1rem; /* Espaciado entre los botones */
+  margin-top: 1rem; /* Espaciado superior para separar de los campos del formulario */
+}
+
+.button-group .btn {
+  font-size: 1rem; /* Ajusta el tamaño del texto del botón */
+  border-radius: 8px;
+  padding: 0.5rem 1rem; /* Mejora la zona interactiva del botón */
+}
+
+/* Asegurando que los botones sean responsivos */
+@media (max-width: 768px) {
+  .button-group {
+    flex-direction: column; /* Los botones se apilan en dispositivos pequeños */
+    align-items: center; /* Centra los botones al apilarlos */
+    gap: 1rem; /* Espaciado entre los botones */
+  }
+
+  .button-group .btn {
+    width: 100%; /* Los botones ocuparán todo el ancho disponible */
+    max-width: 300px; /* Límite para que no sean demasiado grandes en pantallas grandes */
+  }
+}
+
+
+.form-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 10px;
+  border-bottom: 1px solid #ccc;
+  border-radius: 8px 8px 0 0; /* Bordes redondeados en la parte superior */
+  position: relative; /* Necesario para el botón de cierre */
+}
+
+.form-header h3 {
+  margin: 0;
+  font-size: 1.25rem;
+}
+
+

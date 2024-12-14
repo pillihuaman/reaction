@@ -1,0 +1,10 @@
+{
+    "public_base_url_seguridad": "http://localhost:8085",
+    "public_base_url_support": "http://localhost:8081",
+    "public_base_url_search": "http://localhost:8090",
+    "public_base_url_imagen": "http://localhost:8099",
+     "public_base_url_ingelligency_artificial": "http://localhost:8081",
+     "acces_public": "public" ,
+     "acces_private": "private" 
+}
+ 

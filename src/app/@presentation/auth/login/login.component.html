@@ -1,0 +1,21 @@
+<div class="flex-container">
+        <form [formGroup]="loginForm" (ngSubmit)="submit()"> <!-- Usa ngSubmit para el manejo del submit -->
+      <div class="container form-group">
+        <div class="row">
+          <label class="">Mail</label>
+          <input nbInput type="text" status="primary" fieldSize="small" placeholder="Enter Mail" formControlName="user" />
+        </div>
+        <div class="row">
+          <label for="">Password</label>
+          <input nbInput type="password" status="primary" fieldSize="small" placeholder="Enter Password" formControlName="password" />
+        </div>
+        <div class="row col-md-3">
+              <button status="primary" nbButton>LogIng</button> <!-- Color principal -->
+        </div>
+        <div class="col-md-6">
+          <img src="assets/imgs/Gamachicaslogoconnumero.jpg" width="100%" alt="" />
+        </div>
+      </div>
+    </form>
+</div>
+
