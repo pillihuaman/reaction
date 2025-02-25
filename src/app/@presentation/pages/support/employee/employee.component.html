@@ -1,0 +1,61 @@
+<div class="container">
+  <form [formGroup]="employeRequestForm">
+    <nb-accordion multi="true">
+      <nb-accordion-item expanded="true" [disabled]="false">
+        <nb-accordion-item-header>
+          Search Information
+        </nb-accordion-item-header>
+        <nb-accordion-item-body>
+          <div class="row">
+            <div class="col-md-3 col-sm-6 col-12">
+              <div class="form-group">
+                <mat-form-field>
+                  <input matInput type="text" placeholder="ID" formControlName="idToFind" (input)="checkInputs()" />
+                </mat-form-field>
+                <app-validation-message *ngIf="employeRequestForm.get('idToFind')?.value"
+                  [control]="employeRequestForm.get('idToFind')" [errorMessages]="listError">
+                </app-validation-message>
+              </div>
+            </div>
+
+            <div class="col-md-3 col-sm-6 col-12">
+              <div class="form-group">
+                <mat-form-field>
+                  <input matInput type="text" placeholder="Name" formControlName="nameToFind" (input)="checkInputs()" />
+                </mat-form-field>
+              </div>
+            </div>
+
+            <div class="col-md-3 col-sm-6 col-12">
+              <div class="form-group">
+                <mat-form-field>
+                  <input matInput type="text" placeholder="Last Name" formControlName="lastNameToFind"
+                    (input)="checkInputs()" />
+                </mat-form-field>
+              </div>
+            </div>
+
+            <div class="col-md-3 col-sm-6 col-12">
+              <div class="form-group">
+                <mat-form-field>
+                  <input matInput type="text" placeholder="Document" formControlName="documentToFind"
+                    (input)="checkInputs()" />
+                </mat-form-field>
+              </div>
+            </div>
+
+            <!-- Action Buttons -->
+            <div class="col-12 d-flex justify-content-between mt-3">
+              <button type="button" class="btn btn-primary" (click)="findByparameter()"
+                [disabled]="searchButtonDisabled">Search</button>
+              <button type="button" class="btn btn-primary" (click)="onNewClick()">New</button>
+            </div>
+          </div>
+        </nb-accordion-item-body>
+      </nb-accordion-item>
+
+
+
+    </nb-accordion>
+  </form>
+</div>

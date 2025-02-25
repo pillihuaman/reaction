@@ -1,0 +1,47 @@
+:host {
+  display: block;
+}
+
+mat-dialog-content {
+  max-width: 400px;
+  text-align: center;
+}
+
+.header {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: #8d5f19;
+  color: white;
+  padding: 16px;
+}
+
+.icon {
+  font-size: 60px;
+  margin-right: 10px;
+}
+
+.warning-icon {
+  color: orange;
+}
+
+.info-icon {
+  color: blue;
+}
+
+.question-icon {
+  color: gray;
+}
+
+mat-dialog-actions {
+  display: flex;
+  justify-content: space-between;
+  padding: 16px;
+}
+
+button {
+  padding: 8px 16px;
+  border-radius: 4px;
+  cursor: pointer;
+  width: 100px;
+}

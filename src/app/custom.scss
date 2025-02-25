@@ -1,0 +1,191 @@
+/* Estilo base para formularios */
+form {
+    width: 100%;
+    margin: 0 auto;
+    padding: 1rem;
+
+    border-radius: 5px;
+}
+
+/* Contenedor general */
+.container {
+    padding: 1rem;
+}
+
+/* Encabezado de formulario */
+.form-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 1rem;
+}
+
+.form-header h3 {
+    margin: 0;
+}
+
+.close-btn {
+    background: none;
+    border: none;
+    font-size: 1.5rem;
+    cursor: pointer;
+}
+
+/* Grupos de formulario */
+.form-group {
+    margin-bottom: 20px;
+}
+
+input[nbInput], input[matInput] {
+    width: 100%;
+    padding: 0.5rem;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    font-size: 1rem;
+}
+
+small {
+ 
+    font-size: 0.875rem;
+}
+
+/* Botones */
+button {
+    padding: 0.5rem;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+}
+
+/* Ajustes de distribución y control de botones */
+.col-12.d-flex {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 1rem; /* Control del espacio entre los botones */
+    justify-content: space-between;
+}
+
+/* Control del tamaño de los botones */
+.col-12.d-flex button {
+    flex: 1 1 30%; /* Permite que los botones se ajusten proporcionalmente */
+    min-width: 120px; /* Establece un ancho mínimo para los botones */
+    max-width: 150px; /* Establece un ancho máximo */
+    padding: 0.2rem 1rem; /* Padding ajustable */
+    font-size: 0.9rem; /* Tamaño de fuente por defecto */
+}
+
+/* Ajustes para pantallas grandes */
+@media (min-width: 768px) {
+    .col-12.d-flex button {
+        flex-basis: 30%; /* Aumenta la base de los botones para pantallas grandes */
+        padding: 0.4rem 1.2rem; /* Más padding en pantallas grandes */
+        font-size: 1rem; /* Aumenta ligeramente el tamaño de fuente */
+    }
+}
+
+/* Ajustes para pantallas pequeñas */
+@media (max-width: 576px) {
+    .col-12.d-flex button {
+        flex-basis: 100%; /* Los botones ocupan el 100% del ancho */
+        margin-bottom: 1rem; /* Espacio entre los botones en pantallas pequeñas */
+    }
+}
+
+/* Botones con clase .btn-primary */
+.btn-primary {
+    background-color: #007bff;
+    color: white;
+}
+
+/* Botones con clase .btn-secondary */
+.btn-secondary {
+    background-color: #6c757d;
+    color: white;
+}
+
+/* Contenedor de tabla */
+.table-wrapper {
+    overflow-x: auto;
+    padding: 1rem;
+}
+
+::ng-deep table {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+::ng-deep table th, ::ng-deep table td {
+    padding: 0.75rem;
+    text-align: left;
+    border: 1px solid #ddd;
+}
+
+@media (max-width: 576px) {
+    ::ng-deep table th, ::ng-deep table td {
+        font-size: 0.875rem;
+    }
+}
+button small.button-text {
+    font-size: 0.80rem;  /* Tamaño más pequeño */
+    text-transform: none; /* Evitar que se convierta en mayúsculas */
+    display: block; /* Para que el texto se muestre debajo del icono */
+    text-align: center;
+    margin-top: 5px; /* Espaciado entre el ícono y el texto */
+  }
+  
+
+
+
+
+
+
+
+  /* inicio Estilo del modal */
+/* Estilo del modal */
+.registerModal {
+
+    max-width: 600px;
+    margin: auto;
+
+}
+
+/* Estilos para las etiquetas (labels) */
+.registerModal label {
+    font-size: 1.1rem;
+    font-weight: 600;
+    color: #4a4a4a;
+    margin-bottom: 0.5rem;
+    display: block;
+}
+
+/* Ajuste de los inputs dentro del modal */
+.registerModal input[nbInput], .registerModal mat-slide-toggle {
+    width: 100%;
+    padding: 0.5rem;
+    border-radius: 4px;
+    font-size: 1rem;
+}
+
+/* Estilo para los mensajes de error */
+.registerModal small {
+    font-size: 0.875rem;
+}
+
+/* Botones dentro del modal reutilizando estilos generales */
+.registerModal .col-12.d-flex button {
+    flex: 1;
+    min-width: 120px;
+    max-width: 150px;
+    padding: 0.2rem 1rem;
+}
+
+.registerModal .btn-primary {
+    background-color: #007bff !important;
+    
+}
+
+.registerModal .btn-secondary {
+    background-color: #6c757d;
+    
+}
+    /* fn  Estilo del modal */

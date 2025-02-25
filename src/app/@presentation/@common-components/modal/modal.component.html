@@ -1,0 +1,34 @@
+<div class="modal-container" *ngIf="rowData">
+  <mat-dialog-content>
+    <div class="header">
+      <div class="icon-container" *ngIf="rowData.typeDescription === 'WARNING'">
+        <mat-icon class="icon warning-icon">warning</mat-icon>
+      </div>
+      <div class="icon-container" *ngIf="rowData.typeDescription === 'INFO'">
+        <mat-icon class="icon info-icon">info</mat-icon>
+      </div>
+      <div class="icon-container" *ngIf="rowData.typeDescription === 'QUESTION'">
+        <mat-icon class="icon question-icon">help_outline</mat-icon>
+      </div>
+    </div>
+
+    <div class="body">
+      <ng-container *ngIf="rowData.typeDescription === 'WARNING'">
+        ¿Estás seguro de que quieres eliminar?
+        <p>{{ rowData.description | json }}</p>
+      </ng-container>
+      <ng-container *ngIf="rowData.typeDescription === 'INFO'">
+        Mensaje informativo aquí...
+      </ng-container>
+      <ng-container *ngIf="rowData.typeDescription === 'QUESTION'">
+        ¿Estás seguro de que quieres eliminar?
+        <p>{{ rowData.description | json }}</p>
+      </ng-container>
+    </div>
+  </mat-dialog-content>
+
+  <mat-dialog-actions align="end">
+    <button mat-button color="primary" (click)="deleteInformation()">OK</button>
+    <button mat-button color="warn" (click)="cancelar()">Cancelar</button>
+  </mat-dialog-actions>
+</div>

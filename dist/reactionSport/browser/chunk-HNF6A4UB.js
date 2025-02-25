@@ -1,0 +1,1 @@
+import{pa as n}from"./chunk-OR75CQWA.js";import{kb as t}from"./chunk-BURR62UQ.js";var r=class e{constructor(){}isSidebarCollapsed=!0;ngOnInit(){}static \u0275fac=function(o){return new(o||e)};static \u0275cmp=t({type:e,selectors:[["app-page"]],decls:0,vars:0,template:function(o,m){},dependencies:[n],encapsulation:2})};export{r as PageComponent};

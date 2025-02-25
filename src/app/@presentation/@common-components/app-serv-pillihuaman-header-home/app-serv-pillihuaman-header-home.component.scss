@@ -1,0 +1,48 @@
+/* General Styles */
+.header-components {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 20px;
+  width: 100%;
+  box-sizing: border-box;
+}
+
+.theme-select {
+  font-size: 14px;
+  min-width: 150px;
+  flex-grow: 1;
+  margin-right: 10px;
+}
+
+/* Adjust icons for mobile */
+@media (max-width: 1024px) {
+  .icon {
+    font-size: 20px;
+    margin: 0 8px;
+  }
+  .theme-select {
+    font-size: 12px;
+    min-width: 120px;
+  }
+}
+
+/* Mobile adjustments */
+@media (max-width: 768px) {
+  .header-components {
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 10px 20px;
+  }
+  .icon {
+    font-size: 18px;
+    margin: 0 6px;
+  }
+  .theme-select {
+    font-size: 12px;
+    width: 100%;
+    margin-left: 0;
+    margin-bottom: 10px;
+  }
+}

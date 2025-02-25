@@ -1,0 +1,31 @@
+<div class="flex-container">
+  <form [formGroup]="loginForm" (ngSubmit)="submit()">
+    <div class="container form-group">
+      <div class="row">
+        <mat-form-field appearance="outline">
+          <mat-label>Mail</mat-label>
+          <input matInput type="text" placeholder="Enter Mail" formControlName="user" />
+          <mat-error *ngIf="f['user'].invalid && f['user'].touched">Ingrese un usuario válido</mat-error>
+        </mat-form-field>
+      </div>
+
+      <div class="row">
+        <mat-form-field appearance="outline">
+          <mat-label>Password</mat-label>
+          <input matInput type="password" placeholder="Enter Password" formControlName="password" />
+          <mat-error *ngIf="f['password'].invalid && f['password'].touched">Ingrese una contraseña válida</mat-error>
+        </mat-form-field>
+      </div>
+
+      <div class="row col-md-3">
+        <button mat-raised-button color="primary">Login</button>
+      </div>
+
+      <div *ngIf="hasError" class="alert alert-danger">Usuario o contraseña incorrectos</div>
+
+      <div class="col-md-6">
+        <img src="assets/imgs/Gamachicaslogoconnumero.jpg" width="100%" alt="" />
+      </div>
+    </div>
+  </form>
+</div>

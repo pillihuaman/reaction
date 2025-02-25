@@ -1,0 +1,36 @@
+/* Ajustes para el formulario en pantallas más pequeñas */
+@media (max-width: 768px) {
+    .form-group {
+      margin-bottom: 15px;
+    }
+    .col-md-3, .col-sm-6, .col-12 {
+      flex: 1 1 100%; /* Forzar que las columnas ocupen el 100% del ancho */
+    }
+    .col-12.d-flex {
+      flex-direction: column;
+      align-items: flex-start;
+    }
+  }
+  
+  @media (min-width: 768px) {
+    .form-group {
+      margin-bottom: 20px;
+    }
+    /* Mantener el comportamiento en pantallas medianas y grandes */
+    .col-md-3 {
+      flex: 1 1 23%; /* Asegurarse de que las columnas se distribuyan bien */
+    }
+  }
+  
+  /* Opcional: Asegurarse de que la tabla también se adapte */
+  ::ng-deep .table-wrapper {
+    overflow-x: auto;
+  }
+  
+  @media (max-width: 576px) {
+    ::ng-deep table th, ::ng-deep table td {
+      font-size: 0.875rem;
+    }
+  }
+  
+  

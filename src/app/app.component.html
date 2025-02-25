@@ -1,0 +1,21 @@
+<mat-sidenav-container class="sidenav-container">
+  <mat-sidenav #sidenav mode="side" class="sidenav" [(opened)]="isSidebarOpen">
+    <serv-pillihuaman-sidebar-home></serv-pillihuaman-sidebar-home>
+  </mat-sidenav>
+
+  <mat-sidenav-content>
+    <mat-toolbar color="primary">
+      <button mat-icon-button>
+        <mat-icon>menu</mat-icon>
+      </button>
+      <app-serv-pillihuaman-header-home></app-serv-pillihuaman-header-home>
+    </mat-toolbar>
+
+    <div class="content">
+      <router-outlet></router-outlet>
+    </div>
+
+    <!-- Footer agregado aquí -->
+    <app-serv-pillihuaman-footer-home></app-serv-pillihuaman-footer-home>
+  </mat-sidenav-content>
+</mat-sidenav-container>

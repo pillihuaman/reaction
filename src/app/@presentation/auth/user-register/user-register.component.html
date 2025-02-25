@@ -1,0 +1,61 @@
+<form [formGroup]="loginForm">
+    <div class="container">
+      <div class="flex-container row">
+        <div class="col-12 col-sm-6">
+          <label for="name" class="form-label">Name *</label>
+          <input type="text" matInput placeholder="Name" formControlName="name">
+          <div *ngIf="f['name'].invalid && f['name'].touched" class="invalid-text">
+            <span *ngIf="f['name'].errors?.['required']">The field is required</span>
+            <span *ngIf="f['name'].errors?.['minlength']">The text length must be more than 4</span>
+            <span *ngIf="f['name'].errors?.['maxlength']">The text length must be less than 50</span>
+          </div>
+        </div>
+  
+        <div class="col-12 col-sm-6">
+          <label for="lastName" class="form-label">Last Name</label>
+          <input type="text" matInput placeholder="Last Name" formControlName="lastName">
+        </div>
+  
+        <div class="col-12 col-sm-6">
+          <label for="typeDocument" class="form-label">Document Identifier *</label>
+          <mat-form-field>
+            <mat-select placeholder="Document Type" formControlName="typeDocument">
+              <mat-option value="1">DNI</mat-option>
+              <mat-option value="2">Passport</mat-option>
+              <mat-option value="3">Local Document</mat-option>
+              <mat-option value="4">Driver License</mat-option>
+            </mat-select>
+          </mat-form-field>
+        </div>
+  
+        <div class="col-12 col-sm-4">
+          <label for="password" class="form-label">Password *</label>
+          <input type="password" matInput placeholder="Password" formControlName="password">
+          <div *ngIf="f['password'].invalid && f['password'].touched" class="invalid-text">
+            <span *ngIf="f['password'].errors?.['required']">The field is required</span>
+            <span *ngIf="f['password'].errors?.['minlength']">The text length must be more than 8</span>
+          </div>
+        </div>
+  
+        <div class="col-12 col-sm-4">
+          <label for="repeatpassword" class="form-label">Repeat Password *</label>
+          <input type="password" matInput placeholder="Repeat Password" formControlName="repeatpassword">
+        </div>
+  
+        <div class="col-12 col-sm-4">
+          <label for="phoneNumber" class="form-label">Mobile Phone</label>
+          <input type="text" matInput placeholder="Mobile Phone" formControlName="phoneNumber">
+        </div>
+  
+        <div class="col-12 col-sm-4">
+          <label for="email" class="form-label">Email *</label>
+          <input type="text" matInput placeholder="Email" formControlName="email">
+        </div>
+      </div>
+  
+      <div class="btntype">
+        <button mat-button color="primary" (click)="submit()">Submit</button>
+      </div>
+    </div>
+  </form>
+  

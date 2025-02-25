@@ -1,0 +1,18 @@
+<mat-toolbar color="primary" class="header-components">
+  <mat-form-field appearance="outline" class="theme-select">
+    <mat-label>Select theme</mat-label>
+    <mat-select [(value)]="selectedTheme" (selectionChange)="ChangeThemes($event.value)">
+      <mat-option *ngFor="let item of listThemes" [value]="item.description">
+        {{ item.description }}
+      </mat-option>
+    </mat-select>
+  </mat-form-field>
+
+  <button mat-icon-button>
+    <mat-icon class="icon">home</mat-icon>
+  </button>
+
+  <button mat-icon-button>
+    <mat-icon class="icon">logout</mat-icon>
+  </button>
+</mat-toolbar>
