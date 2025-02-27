@@ -34,8 +34,9 @@ steps:
 
   - task: AzureWebApp@1
     inputs:
-      azureSubscription: 'Nombre-De-Tu-Servicio'
-      appName: 'Nombre-De-Tu-App'
+      azureSubscription: 'Azure-Service-Connection'  # Nombre exacto de la Service Connection en Azure DevOps
+      appName: 'reactions-enagbwcwfxgygkek'  # Nombre de la app en Azure
+      resourceGroupName: 'zarmirRecurso2'  # Nombre del grupo de recursos
       package: '$(Build.ArtifactStagingDirectory)/app.zip'
       deploymentMethod: 'zipDeploy'
     displayName: 'Deploy to Azure Web App'
