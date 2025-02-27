@@ -1,0 +1,41 @@
+trigger:
+  - main  # Ejecutar el pipeline cuando haya cambios en la rama main
+
+pool:
+  vmImage: ubuntu-latest
+
+steps:
+  - task: NodeTool@0
+    inputs:
+      versionSpec: '20.x'
+    displayName: 'Install Node.js'
+
+  - script: |
+      npm install -g @angular/cli
+      npm ci
+      ng build --configuration=production --base-href=/
+    displayName: 'Install dependencies and build Angular app'
+
+  - task: ArchiveFiles@2
+    inputs:
+      rootFolderOrFile: 'dist/reaction-sport/browser'
+      includeRootFolder: false
+      archiveType: 'zip'
+      archiveFile: '$(Build.ArtifactStagingDirectory)/app.zip'
+      replaceExistingArchive: true
+    displayName: 'Archive build files'
+
+  - task: PublishBuildArtifacts@1
+    inputs:
+      PathtoPublish: '$(Build.ArtifactStagingDirectory)/app.zip'
+      ArtifactName: 'drop'
+      publishLocation: 'Container'
+    displayName: 'Publish artifacts'
+
+  - task: AzureWebApp@1
+    inputs:
+      azureSubscription: 'Nombre-De-Tu-Servicio'
+      appName: 'Nombre-De-Tu-App'
+      package: '$(Build.ArtifactStagingDirectory)/app.zip'
+      deploymentMethod: 'zipDeploy'
+    displayName: 'Deploy to Azure Web App'
