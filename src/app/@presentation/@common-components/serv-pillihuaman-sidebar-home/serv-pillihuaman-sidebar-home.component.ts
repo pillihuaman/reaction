@@ -1,30 +1,60 @@
-import { Component, OnInit } from '@angular/core';
-import { MatListModule } from '@angular/material/list';
-import { MatIconModule } from '@angular/material/icon';
-import { MenuLeft } from '../../../@data/model/general/menu-left';
-import { ReactiveFormsModule } from '@angular/forms';
+import { Component, CUSTOM_ELEMENTS_SCHEMA, OnInit } from '@angular/core';
 import { MatFormFieldModule } from '@angular/material/form-field';
+import { MatIconModule } from '@angular/material/icon';
 import { MatInputModule } from '@angular/material/input';
-import { MatButtonModule } from '@angular/material/button';
+import { NbEvaIconsModule } from '@nebular/eva-icons';
+import { NbButtonModule, NbLayoutModule, NbSidebarModule, NbSidebarService, NbThemeModule, NbThemeService } from '@nebular/theme';
+import { MenuLeft } from '../../../@data/model/general/menu-left';
 
 @Component({
   selector: 'app-serv-pillihuaman-sidebar-home',
-  templateUrl: './serv-pillihuaman-sidebar-home.component.html',
-  styleUrls: ['./serv-pillihuaman-sidebar-home.component.scss'],
   standalone: true,
-  imports: [MatListModule, MatIconModule,   
-     ReactiveFormsModule,  // ✅ Importante para formularios reactivos
-    MatFormFieldModule,   // ✅ Necesario para <mat-form-field>
-    MatInputModule,       // ✅ Necesario para <input matInput>
-    MatButtonModule  ]
+  imports: [MatFormFieldModule,
+    MatIconModule,
+    MatInputModule,
+    NbThemeModule,  // Solo este necesita `forRoot`
+    NbLayoutModule,
+    NbSidebarModule,
+    NbButtonModule,
+    NbEvaIconsModule
+  ],
+  templateUrl: './serv-pillihuaman-sidebar-home.component.html',
+  styleUrl: './serv-pillihuaman-sidebar-home.component.scss',
+  schemas: [CUSTOM_ELEMENTS_SCHEMA],
+  providers: [NbSidebarService]
 })
-export class ServPillihuamanSidebarHomeComponent implements OnInit {
-  listMenuLeft: MenuLeft[] = [
-    { idMenu: 1, description: 'Home', icono: 'home', iconClass: 'material-icons-outlined', url: '/' },
-    { idMenu: 2, description: 'Video', icono: 'play_circle_outline', iconClass: 'material-icons-outlined', url: '/user' }
-  ];
+export class ServPillihuamanSidebarHomeComponent  implements OnInit {
 
-  constructor() {}
 
-  ngOnInit(): void {}
+
+  listMenuLeft: MenuLeft[] = [];
+  constructor() {
+
+    let menuLeft: MenuLeft = {
+      idMenu: 1,
+      description: 'Home',
+      icono: 'house',
+      iconClass: 'material-icons-outlined',
+      url: '/'
+    }
+
+    let menuLeft1: MenuLeft = {
+      idMenu: 2,
+      description: 'Video',
+      icono: 'play_circle_outline',
+      iconClass: 'material-icons-outlined',
+      url: '/user'
+    }
+    this.listMenuLeft.push(menuLeft);
+    this.listMenuLeft.push(menuLeft1);
+
+  }
+
+  ngOnInit(): void {
+  }
+
+  HideMenu(): void {
+
+  }
+
 }

@@ -1,0 +1,22 @@
+// Importación de Angular Material y Nebular
+
+@use '@nebular/theme/styles/theming'as *; 
+@use '@nebular/theme/styles/themes/corporate'as *;
+@use '@nebular/theme/styles/themes/dark'as *;
+@use '@nebular/theme/styles/themes/cosmic'as *;
+@use '@nebular/theme/styles/themes/default'as *;
+
+// Habilitar propiedades CSS personalizadas en Nebular
+$nb-enable-css-custom-properties: true;
+
+// Configuración de los temas de Nebular
+$nb-themes: nb-register-theme(
+  (
+    header-background-color: #1D6EB7,
+    header-text-color: #d9e1e9,
+    header-padding: 4.25rem,
+  ),
+  corporate,
+  corporate
+);
+

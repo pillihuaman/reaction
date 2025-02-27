@@ -1,34 +1,38 @@
 <div class="modal-container" *ngIf="rowData">
-  <mat-dialog-content>
-    <div class="header">
+  <nb-card>
+    <nb-card-header class="header">
       <div class="icon-container" *ngIf="rowData.typeDescription === 'WARNING'">
-        <mat-icon class="icon warning-icon">warning</mat-icon>
+        <nb-icon icon="alert-triangle-outline" class="icon" [ngClass]="getIconClass(rowData.typeDescription)"></nb-icon>
       </div>
       <div class="icon-container" *ngIf="rowData.typeDescription === 'INFO'">
-        <mat-icon class="icon info-icon">info</mat-icon>
+        <nb-icon icon="info-outline" class="icon" [ngClass]="getIconClass(rowData.typeDescription)"></nb-icon>
       </div>
       <div class="icon-container" *ngIf="rowData.typeDescription === 'QUESTION'">
-        <mat-icon class="icon question-icon">help_outline</mat-icon>
+        <nb-icon icon="question-mark-circle-outline" class="icon" [ngClass]="getIconClass(rowData.typeDescription)"></nb-icon>
       </div>
-    </div>
-
-    <div class="body">
+      <!-- Add similar conditions for other types -->
+    </nb-card-header>
+    <nb-card-body>
+      <!-- Modal Body Content Here -->
       <ng-container *ngIf="rowData.typeDescription === 'WARNING'">
-        ¿Estás seguro de que quieres eliminar?
+        <!-- HTML content specific to WARNING type -->
+        Are you sure you want to delete?
         <p>{{ rowData.description | json }}</p>
       </ng-container>
       <ng-container *ngIf="rowData.typeDescription === 'INFO'">
-        Mensaje informativo aquí...
+        <!-- HTML content specific to INFO type -->
+        Information message here...
       </ng-container>
       <ng-container *ngIf="rowData.typeDescription === 'QUESTION'">
-        ¿Estás seguro de que quieres eliminar?
+        <!-- HTML content specific to WARNING type -->
+        Are you sure you want to delete?
         <p>{{ rowData.description | json }}</p>
       </ng-container>
-    </div>
-  </mat-dialog-content>
-
-  <mat-dialog-actions align="end">
-    <button mat-button color="primary" (click)="deleteInformation()">OK</button>
-    <button mat-button color="warn" (click)="cancelar()">Cancelar</button>
-  </mat-dialog-actions>
+      <!-- Add similar ng-containers for other types -->
+    </nb-card-body>
+    <nb-card-footer>
+      <button class="primary" (click)="deleteInformation()">OK</button>
+      <button class="danger" (click)="cancelar()">Cancel</button>
+    </nb-card-footer>
+  </nb-card>
 </div>

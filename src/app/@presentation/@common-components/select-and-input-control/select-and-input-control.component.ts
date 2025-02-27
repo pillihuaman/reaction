@@ -1,39 +1,32 @@
-import { CommonModule } from '@angular/common';
 import { Component, Input, OnInit } from '@angular/core';
-import { FormsModule } from '@angular/forms';
 
 @Component({
   selector: 'app-select-and-input-control',
   templateUrl: './select-and-input-control.component.html',
-  styleUrls: ['./select-and-input-control.component.scss'],
-  standalone: true,
-    imports: [
-      CommonModule,FormsModule 
-    ],
+  styleUrls: ['./select-and-input-control.component.scss']
 })
 export class SelectAndInputControlComponent implements OnInit {
-  
-  @Input() isInput: boolean = false;
-  @Input() isSelect: boolean = false;
+
+  constructor() { }
+  isSelectMode = true;
+
+  @Input() isInput?: boolean;
+  @Input() isSelect?: boolean;
   @Input() data?: any;
-  inputValue: any = '';
+  inputValue:any;
+  handleInput(value: any) {
+    // Handle the input event logic here
+    console.log('Input value:', value);
+  }
 
-  constructor() {}
-
+  handleSelect(value: any) {
+    // Handle the select event logic here
+    console.log('Selected value:', value);
+  }
   ngOnInit(): void {
-    if (this.isInput && this.data !== undefined) {
-      this.inputValue = this.data;
+    if(this.isInput){
+      this.inputValue = this.data
     }
   }
 
-  handleInput(event: Event) {
-    const target = event.target as HTMLInputElement;
-    this.inputValue = target.value;
-    console.log('Input value:', this.inputValue);
-  }
-
-  handleSelect(event: Event) {
-    const target = event.target as HTMLSelectElement;
-    console.log('Selected value:', target.value);
-  }
 }

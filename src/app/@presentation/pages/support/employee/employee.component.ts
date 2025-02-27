@@ -1,8 +1,12 @@
 import { DatePipe, formatDate } from '@angular/common';
 import { Component, CUSTOM_ELEMENTS_SCHEMA, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
-import { MatDialog } from '@angular/material/dialog';;
+import { MatDialog } from '@angular/material/dialog';
+import { NbComponentStatus, NbDatepickerModule, NbDialogService } from '@nebular/theme';
 import { map } from 'rxjs';
+
+import { RegisterEmployeeComponent } from './register-employee/register-employee.component';
+import { Utils } from '../../../../utils/utils';
 import { EmployeeResponse } from '../../../../@data/model/employee/employeeResponse';
 import { EmployeeRequest } from '../../../../@data/model/employee/employeRequest';
 import { ModalType } from '../../../../@data/model/general/enumModal';
@@ -17,16 +21,18 @@ import { GeneralConstans } from '../../../../utils/generalConstant';
 import { ModalComponent } from '../../../@common-components/modal/modal.component';
 import { AuthenticationService } from '../../../../@data/services/authentication.service';
 import { AuthenticationRepository } from '../../../../@domain/repository/repository/authentication.repository';
+import { CoreImports } from '../../../../core-imports';
 import { CoreProviders } from '../../../../core-providers';
 import {  ViewEncapsulation } from '@angular/core';
-import { CoreImportsModule } from '../../../../core-imports';
-import { Utils } from '../../../../utils/utils';
+import { StockComponent } from '../stock/stock.component';
+import { TableDatasourceComponent } from '../../../@common-components/table-datasource/table-datasource.component';
+
 @Component({
   selector: 'app-employee',
   templateUrl: './employee.component.html',
   styleUrls: ['./employee.component.scss'],
   standalone: true,
-  imports: [CoreImportsModule
+  imports: [CoreImports,NbDatepickerModule,TableDatasourceComponent
   ], // Asegúrate de que estos módulos estén aquí
   providers: [CoreProviders,
     { provide: AuthenticationRepository, useClass: AuthenticationService },
@@ -69,7 +75,7 @@ export class EmployeeComponent extends BaseImplementation implements OnInit {
   hasMorePagesT: boolean = true;
   processDataResult?: any;
   constructor(private fb: FormBuilder, private supportService: SupportRepository, private modalRepository: ModalRepository,
-     private spinnerService: SpinnerService, private datePipe: DatePipe, 
+    private dialogService: NbDialogService, private spinnerService: SpinnerService, private datePipe: DatePipe, 
     private employeeService: EmployeeService) {
     super();
     this.employeRequest = {
@@ -115,6 +121,17 @@ export class EmployeeComponent extends BaseImplementation implements OnInit {
       description: event.data.Name,
       typeDescription:ModalType.QUESTION.toString()
     };
+    
+    const dialogRef = this.dialogService.open(ModalComponent, {
+      context: {
+        rowData: modal // Pass the data to the modal
+      } as any
+
+    });
+    //debuger
+    dialogRef.componentRef.instance.deleteConfirmed.subscribe(() => {
+      this.handleDeleteAction(event); // Implement logic to delete data
+    });
   }
   isNewPage(): boolean {
     return !this.employeRequestForm.get('id')?.value;
@@ -210,8 +227,8 @@ export class EmployeeComponent extends BaseImplementation implements OnInit {
       this.supportService.deleteEmployee(id).subscribe(
         (value) => {
           // Handl.e success
-          //let nbComponentStatus: NbComponentStatus = 'success';
-          //this.modalRepository.showToast(nbComponentStatus, "delete Succes", "Succes");
+          let nbComponentStatus: NbComponentStatus = 'success';
+          this.modalRepository.showToast(nbComponentStatus, "delete Succes", "Succes");
           //this.employeRequestForm.reset();
         // this.employeeService.reloadEmployees();
           this.spinnerService.hide();
@@ -333,7 +350,7 @@ export class EmployeeComponent extends BaseImplementation implements OnInit {
   }
 
   onNewClick(): void {
-   /* this.dialogService.open(RegisterEmployeeComponent, {
+    this.dialogService.open(RegisterEmployeeComponent, {
       context: {
         // Puedes pasar datos al modal aquí
       },
@@ -343,7 +360,7 @@ export class EmployeeComponent extends BaseImplementation implements OnInit {
       dialogClass: 'custom-dialog-centered',
     }).onClose.subscribe(result => {
       console.log('Modal cerrado con resultado:', result);
-    });*/
+    });
   }
   
   }

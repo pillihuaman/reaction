@@ -1,5 +1,6 @@
 import { HttpInterceptorFn } from '@angular/common/http';
 import { inject } from '@angular/core';
+import { NbComponentStatus } from '@nebular/theme';
 import { catchError, throwError } from 'rxjs';
 import { AuthenticationRepository } from '../../@domain/repository/repository/authentication.repository';
 import { ModalRepository } from '../../@domain/repository/repository/modal.repository ';
@@ -32,8 +33,8 @@ export const MyHttpInterceptorInterceptor: HttpInterceptorFn = (req, next) => {
   // Manejar la solicitud y errores
   return next(clonedRequest).pipe(
     catchError((error) => {
-     //onst status: NbComponentStatus = 'danger';
-      //dalRepository.showToast(status, `Error: ${error.message} (MyHttpInterceptor)`, '');
+      const status: NbComponentStatus = 'danger';
+      modalRepository.showToast(status, `Error: ${error.message} (MyHttpInterceptor)`, '');
       return throwError(() => error);
     })
   );

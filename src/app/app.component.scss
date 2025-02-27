@@ -1,37 +1,37 @@
-.sidenav-container {
-  width: 100%;
-  height: 100vh;
-  background-color: rgb(134, 42, 42);
-}
-
-mat-toolbar {
-  display: flex;
-  align-items: center;
+@use '@nebular/theme/styles/theming'  as *;
+nb-layout {
+  width: 100% !important;
+  height: 100% !important;
   background-color: rgb(134, 42, 42) !important;
-  color: white;
+  overflow-x: auto; /* Permitir scroll horizontal */
 }
 
-mat-sidenav {
-  width: 250px;
-  background-color: white;
-}
-
-.content {
+nb-layout-column {
   width: 100%;
+  background-color: inherit; /* Mantener el color de fondo del layout */
+  overflow-x: auto; /* Habilitar scroll horizontal si hay desbordamiento */
   padding: 1rem;
-  background-color: inherit;
-  overflow-x: auto;
 }
 
-/* Estilos para contenido scrollable */
 .scrollable-content {
   width: 100%;
+  background-color: inherit; /* Aplicar el mismo fondo */
   -webkit-overflow-scrolling: touch;
 }
 
-/* Ajustes para dispositivos pequeños */
+::ng-deep .table-wrapper {
+  width: 100%;
+  background-color: inherit; /* Color consistente con el layout */
+  overflow-x: auto;
+  padding: 1rem;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* Sombra opcional */
+}
+
 @media screen and (max-width: 768px) {
-  .content {
+  ::ng-deep .table-wrapper {
+    padding: 0.5rem;
+  }
+  nb-layout-column {
     padding: 0.5rem;
   }
 }

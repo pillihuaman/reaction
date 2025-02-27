@@ -1,37 +1,41 @@
-.sidenav-container {
+@use '@nebular/theme/styles/theming' as *;
+
+::ng-deep .mainrdHeader {
   width: 100%;
-  height: 100vh;
-  background-color: rgb(134, 42, 42);
+  text-align: end;
+  padding-right: inherit;
+  align-items: stretch;
+  align-content: space-between;
+
+
 }
 
-mat-toolbar {
-  display: flex;
-  align-items: center;
+
+
+
+
+::ng-deep .rootBase {
+  position: relative !important;
+  background-color: #f5f5f5 !important;
+}
+
+//.body__wide {
+//  min-height: calc(100vh - 11rem);
+//}
+//
+//.body__footer {
+//  height: 6.25rem;
+//  background-color: white;
+//}
+nb-layout {
+  width: 100% !important;
+  height: 100% !important;
   background-color: rgb(134, 42, 42) !important;
-  color: white;
 }
 
-mat-sidenav {
-  width: 250px;
-  background-color: white;
+// NOSONAR
+
+nb-card {
+  border-color: #ffffff;
 }
 
-.content {
-  width: 100%;
-  padding: 1rem;
-  background-color: inherit;
-  overflow-x: auto;
-}
-
-/* Estilos para contenido scrollable */
-.scrollable-content {
-  width: 100%;
-  -webkit-overflow-scrolling: touch;
-}
-
-/* Ajustes para dispositivos pequeños */
-@media screen and (max-width: 768px) {
-  .content {
-    padding: 0.5rem;
-  }
-}

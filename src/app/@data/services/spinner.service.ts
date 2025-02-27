@@ -4,7 +4,7 @@ import { Overlay, OverlayRef } from '@angular/cdk/overlay';
 
 import { ComponentPortal } from '@angular/cdk/portal';
 import { SpinnerRepository } from '../../@domain/repository/repository/spinner.repository';
-//import { AppspinnercardComponent } from '../../@presentation/@common-components/appspinnercard/appspinnercard.component';
+import { AppspinnercardComponent } from '../../@presentation/@common-components/appspinnercard/appspinnercard.component';
 
 @Injectable({
   providedIn: 'root',
@@ -23,8 +23,9 @@ export class SpinnerService extends SpinnerRepository {
         backdropClass: 'overlay-backdrop',
         positionStrategy: this.overlay.position().global().centerHorizontally().centerVertically(),
       });
-      /*const portal = new ComponentPortal(AppspinnercardComponent);
-      this.overlayRef.attach(portal);*/
+
+      const portal = new ComponentPortal(AppspinnercardComponent);
+      this.overlayRef.attach(portal);
     }
   }
 

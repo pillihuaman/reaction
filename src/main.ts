@@ -3,7 +3,9 @@ import { AppComponent } from './app/app.component';
 import { provideRouter } from '@angular/router';
 import { HTTP_INTERCEPTORS, provideHttpClient, withInterceptors, withInterceptorsFromDi } from '@angular/common/http';
 import { routes } from './app/app.routes';
+import { NbEvaIconsModule } from '@nebular/eva-icons';
 import { provideAnimationsAsync } from '@angular/platform-browser/animations/async';
+import { NB_DATE_SERVICE_OPTIONS, NbButtonModule, NbDatepickerModule, NbDialogConfig, NbDialogModule, NbIconModule, NbLayoutModule, NbSidebarModule, NbThemeModule, NbToastrModule, NbTreeGridModule } from '@nebular/theme';
 import { UserRepository } from './app/@domain/repository/repository/user.repository';
 import { UserService } from './app/@data/services/user.service';
 import { AuthenticationRepository } from './app/@domain/repository/repository/authentication.repository';
@@ -30,10 +32,7 @@ import { MatInputModule } from '@angular/material/input';
 import { registerLocaleData } from '@angular/common';
 import localeEsPe from '@angular/common/locales/es-PE';
 import { MatIconModule } from '@angular/material/icon';
-import { MatFormFieldModule } from '@angular/material/form-field';
-import { MatToolbarModule } from '@angular/material/toolbar';
-import { MatButtonModule } from '@angular/material/button';
-import { MatCardModule } from '@angular/material/card';
+const nebularProviders = NbThemeModule.forRoot({ name: 'dark' }).providers || [];
 export function initConfig(constService: Const) {
   return () => Promise.all([
     constService.loadCommonConfig(),
@@ -43,27 +42,28 @@ export function initConfig(constService: Const) {
 registerLocaleData(localeEsPe, 'es-PE');
 bootstrapApplication(AppComponent, {
   providers: [
-    provideHttpClient(),
     provideRouter(routes),
     provideHttpClient(
       // registering interceptors
-      withInterceptors([MyHttpInterceptorInterceptor, ErrorInterceptorInterceptor])
+      withInterceptors([MyHttpInterceptorInterceptor,ErrorInterceptorInterceptor]) 
     ),
     provideAnimationsAsync(),
+    nebularProviders,
     importProvidersFrom(
-
+      NbLayoutModule,
+      NbSidebarModule,
+      NbButtonModule,
+      NbEvaIconsModule,
+      NbDialogModule.forRoot(),
+      NbToastrModule.forRoot(),
+      NbDatepickerModule.forRoot(), // Add this line
       MatDatepickerModule,
       MatNativeDateModule, // Necesario para el soporte nativo de fechas
       MatInputModule,
-      MatIconModule,
-      MatFormFieldModule,  // ✅ Necesario  
-      MatToolbarModule,
-      MatButtonModule,
-      MatToolbarModule,
-      MatIconModule,
-      MatInputModule,
-      MatFormFieldModule,
-      MatCardModule,
+      NbTreeGridModule,NbEvaIconsModule,NbIconModule,MatIconModule,
+      
+      
+
     ),
     Const,
     { provide: UserRepository, useClass: UserService },
@@ -77,6 +77,14 @@ bootstrapApplication(AppComponent, {
     { provide: MAT_DATE_LOCALE, useValue: 'es-PE' }, // Esto puede ser cambiado dinámicamente
     { provide: LOCALE_ID, useValue: 'es-PE' },
     ApiService,
-    provideAnimationsAsync(), provideAnimationsAsync(),
+    {
+      provide: NbDialogConfig,
+      useValue: {
+        hasBackdrop: true,
+        backdropClass: 'dark-backdrop',
+        closeOnBackdropClick: true,
+        closeOnEsc: true,
+      },
+    }, provideAnimationsAsync(), provideAnimationsAsync(),
   ],
 });

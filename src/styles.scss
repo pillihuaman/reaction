@@ -1,0 +1,103 @@
+@use "bootstrap";
+@use '@nebular/theme/styles/theming' as *; // Estilos de teming
+@use '@nebular/theme/styles/theming-variables' as *;// Variables de tematización
+@use '@nebular/theme/styles/globals' as *; // Estilos globales de Nebular
+@use '@nebular/theme/styles/themes/default' as *; // Cambia 'default' si usas otro tema
+@use 'bootstrap/scss/mixins' as *; // Mixins de Bootstrap
+@use 'bootstrap/scss/mixins/breakpoints' as *; // Mixins de breakpoint
+@use '@angular/material/prebuilt-themes/indigo-pink.css' as *;// Estilo de Angular Material
+
+@include nb-install() {
+  @include nb-theme-global(); // Change `default` to your preferred theme
+};
+
+html, body {
+  height: 100%;
+  margin: 0; // Eliminado del body para evitar redundancia
+  font-family: Roboto, "Helvetica Neue", sans-serif;
+}
+::ng-deep nb-dialog-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+::ng-deep .nb-overlay {
+  background: rgba(0, 0, 0, 0.5);
+}
+
+.responsive-dialog {
+  max-width: 90%;
+  width: 600px;
+}
+
+.custom-backdrop {
+  background-color: rgba(0, 0, 0, 0.5); // Color personalizado para el backdrop
+}
+
+nb-dialog-container {
+  background-color: rgba(73, 66, 66, 1); /* Fondo rojo con 80% de opacidad */
+  border-radius: 8px; /* Bordes redondeados opcionales */
+  padding: 20px; /* Ajusta el espacio interno */
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3); /* Sombra para destacar */
+}
+
+/* Opcional: Ajustar el contenedor interno del modal */
+nb-dialog-container app-register-employee {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.custom-dialog-centered {
+  display: flex !important; /* Asegura que el contenedor sea un flexbox */
+  justify-content: center; /* Centra horizontalmente */
+  align-items: center; /* Centra verticalmente */
+  min-height: 100vh; /* Asegura que ocupe toda la altura de la pantalla */
+  padding: 1rem; /* Espaciado opcional */
+}
+
+.nb-overlay-container {
+  z-index: 1050; /* Asegura que el modal esté siempre por encima */
+}
+
+.custom-backdrop {
+  background: rgba(0, 0, 0, 0.5); /* Personaliza el color y transparencia del fondo */
+}
+
+
+html, body { height: 100%; }
+body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
+/* Alinear Material a los estilos globales */
+.mat-form-field {
+  font-family: 'Roboto', sans-serif; /* O el que uses globalmente */
+  margin: 0 0 16px 0; /* Márgenes globales */
+  width: 100%; /* Asegurar que sea responsive */
+}
+
+.mat-form-field-appearance-outline .mat-form-field-outline {
+  border-width: 1px;
+  border-color: var(--primary-color, #ccc); /* Personaliza el color */
+}
+
+.mat-datepicker-toggle {
+  color: var(--primary-color, #6200ea); /* Color de iconos */
+}
+
+.mat-calendar {
+  font-family: 'Roboto', sans-serif; /* Fuente global */
+  color: var(--text-color, #333); /* Color de texto */
+}
+
+.mat-calendar-header {
+  background-color: var(--secondary-color, #f5f5f5); /* Fondo encabezado */
+  color: var(--primary-color, #6200ea); /* Color encabezado */
+}
+
+.mat-calendar-table {
+  border-collapse: collapse; /* Bordes más limpios */
+}
+
+.mat-calendar-table-header {
+  background-color: var(--secondary-color, #f9f9f9);
+}

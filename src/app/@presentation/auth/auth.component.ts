@@ -1,36 +1,50 @@
 import { CommonModule } from '@angular/common';
-import { Component, CUSTOM_ELEMENTS_SCHEMA, ViewEncapsulation } from '@angular/core';
+import { Component, CUSTOM_ELEMENTS_SCHEMA, OnInit } from '@angular/core';
 import { RouterOutlet } from '@angular/router';
-import { MatButtonModule } from '@angular/material/button';
-import { MatIconModule } from '@angular/material/icon';
-import { MatSidenavModule } from '@angular/material/sidenav';
-import { MatToolbarModule } from '@angular/material/toolbar';
-import { CoreImportsModule } from '../../core-imports';
-
+import { NbButtonModule, NbLayoutModule, NbSidebarService, NbThemeService } from '@nebular/theme';
+import { ServPillihuamanHeaderHomeComponent } from '../@common-components/app-serv-pillihuaman-header-home/app-serv-pillihuaman-header-home.component';
+import { ServPillihuamanSidebarHomeComponent } from '../@common-components/serv-pillihuaman-sidebar-home/serv-pillihuaman-sidebar-home.component';
+import { CoreImports } from '../../core-imports';
 
 @Component({
   selector: 'app-auth',
   templateUrl: './auth.component.html',
   styleUrls: ['./auth.component.scss'],
   standalone: true,
-  encapsulation: ViewEncapsulation.None,
   imports: [
-    MatSidenavModule,
-    MatToolbarModule,
-    MatButtonModule,
-    MatIconModule,
-    RouterOutlet, CoreImportsModule
-  ],
-  schemas: [CUSTOM_ELEMENTS_SCHEMA]
+    CommonModule,
+    NbLayoutModule,
+    NbButtonModule,
+    RouterOutlet,CoreImports
+],
+  providers: [NbSidebarService, NbThemeService],
+  schemas: [CUSTOM_ELEMENTS_SCHEMA],
 })
-export class AuthComponent{
-  isSidebarOpen = false;
+export class AuthComponent implements OnInit {
 
-  toggleSidenav(): void {
-    this.isSidebarOpen = !this.isSidebarOpen;
+  constructor(
+    private sidebarService: NbSidebarService, 
+    private nbThemeService: NbThemeService,private themeService: NbThemeService
+  ) {}
+
+
+  changeTheme() {
+
+    const currentTheme = this.themeService.currentTheme;
+    const newTheme = currentTheme === 'default' ? 'cosmic' : 'default';
+    this.themeService.changeTheme(newTheme);
+  }
+  ngOnInit(): void {
+    // Cambia el tema si es necesario
+    this.nbThemeService.changeTheme('default');
   }
 
-  closeSidenavOnClickOutside(): void {
-    this.isSidebarOpen = false;
+  toggle(): boolean {
+    this.sidebarService.toggle(true, 'menu-barapp');
+    return false;
+  }
+
+  toggleout(): void {
+    this.sidebarService.collapse('menu-barapp');
   }
 }

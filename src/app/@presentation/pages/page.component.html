@@ -1,0 +1,19 @@
+<nb-layout  window>
+  <!--<nb-layout-header fixed>
+    <a href="#" (click)="toggle()" class="content"><span class="material-icons">
+        format_list_bulleted m
+      </span></a>
+    <app-serv-pillihuaman-header-home class="mainrdHeader"></app-serv-pillihuaman-header-home>
+
+  </nb-layout-header>
+  <nb-sidebar tag="menu-barapp" state="collapsed">
+    <serv-pillihuaman-sidebar-home></serv-pillihuaman-sidebar-home>
+    
+  </nb-sidebar>-->
+  
+  <nb-layout-column class="colored-column-basic" (click)="toggleout()"  class="scrollable-column">
+    
+    <router-outlet></router-outlet>
+  </nb-layout-column>
+  <button nbButton>Scroll to Top</button>
+</nb-layout>

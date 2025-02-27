@@ -1,0 +1,54 @@
+
+<div class="registerModal">
+<form [formGroup]="systemForm" class="responsive-form" (ngSubmit)="onSubmit()">
+
+  <div class="form-header">
+    <h5>Register</h5>
+    <button type="button" class="close-btn" aria-label="Close" (click)="closeDialog()">
+      <nb-icon icon="close-outline"></nb-icon>
+    </button>
+  </div>
+
+  <div class="form-group">
+    <input nbInput type="text" placeholder="System Name" formControlName="name" />
+    <div *ngIf="systemForm.get('name')?.invalid && systemForm.get('name')?.touched">
+      <small *ngIf="systemForm.get('name')?.errors?.['required']">Name is required.</small>
+    </div>
+  </div>
+
+  <div class="form-group">
+    <input nbInput type="text" placeholder="Version" formControlName="version" />
+  </div>
+
+  <div class="form-group">
+    <input nbInput type="text" placeholder="Timezone" formControlName="timezone" />
+  </div>
+
+  <div class="form-group">
+    <mat-slide-toggle formControlName="isActive">Is Active</mat-slide-toggle>
+  </div>
+
+  <div class="form-group">
+    <input nbInput type="email" placeholder="Contact Email" formControlName="contactEmail" />
+  </div>
+
+  <div class="form-group">
+    <input nbInput type="text" placeholder="Support Phone" formControlName="supportPhone" />
+  </div>
+
+  <!-- Botones con iconos y texto -->
+  <div class="col-12 d-flex flex-wrap justify-content-between">
+    <!-- Botón de guardar -->
+    <button nbButton status="primary" type="submit" [disabled]="systemForm.invalid" nbTooltip="Save the system" title="Save">
+      <nb-icon icon="checkmark-outline"></nb-icon>
+      <small class="button-text">Save</small>
+    </button>
+
+    <!-- Botón de cancelar -->
+    <button nbButton status="secondary" type="button" (click)="closeDialog()" nbTooltip="Cancel the operation" title="Cancel">
+      <nb-icon icon="close-outline"></nb-icon>
+      <small class="button-text">Cancel</small>
+    </button>
+  </div>
+</form>
+</div>

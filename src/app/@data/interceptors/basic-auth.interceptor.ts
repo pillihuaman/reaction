@@ -7,6 +7,7 @@ import {
   HttpInterceptor,
   HttpRequest,
 } from '@angular/common/http';
+import { NbComponentStatus } from '@nebular/theme';
 import { AuthenticationRepository } from '../../@domain/repository/repository/authentication.repository';
 import { ModalRepository } from '../../@domain/repository/repository/modal.repository ';
 export class BasicAuthInterceptor implements HttpInterceptor {
@@ -34,6 +35,13 @@ export class BasicAuthInterceptor implements HttpInterceptor {
     }
     return next.handle(request);
 
+    return next.handle(request).pipe(
+      catchError((error: HttpErrorResponse) => {
+        const nbComponentStatus: NbComponentStatus = 'danger';
+        this.modalRepository.showToast(nbComponentStatus, error.message + "Basic","");
+        return throwError(error);
+      })
+    );
 
 
   }

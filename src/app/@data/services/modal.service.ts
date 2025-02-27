@@ -1,4 +1,11 @@
 
+import {
+  NbComponentStatus,
+  NbDialogService,
+  NbGlobalLogicalPosition,
+  NbToastrConfig,
+  NbToastrService,
+} from '@nebular/theme';
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { ApiService } from './api.service';
@@ -14,19 +21,19 @@ export class ModalService extends ModalRepository {
   constructor(
     private http: HttpClient,
     private apiService: ApiService,
-   //rivate dialogService: NbDialogService,
-    //ivate toastrService: NbToastrService
+    private dialogService: NbDialogService,
+    private toastrService: NbToastrService
   ) {
     super();
   }
 
   open(closeOnBackdropClick: boolean) {
-  /*this.dialogService.open(ModalComponent, {
+    this.dialogService.open(ModalComponent, {
       closeOnBackdropClick: closeOnBackdropClick, // Use the parameter here
-    });*/
+    });
   }
 
- /*howToast(status: NbComponentStatus, message: string, title: string) {
+  showToast(status: NbComponentStatus, message: string, title: string) {
     const centeredConfig = new NbToastrConfig({
       position: NbGlobalLogicalPosition.TOP_START,
       status: status,
@@ -37,9 +44,9 @@ export class ModalService extends ModalRepository {
       toastClass: 'modal-wrapper',
       hasIcon: false,
       icon: '',
-    });*/
+    });
   
-   //his.toastrService.show(message, title, centeredConfig);
-  
+    this.toastrService.show(message, title, centeredConfig);
+  }
   
 }

@@ -1,21 +1,20 @@
-<mat-sidenav-container class="sidenav-container">
-  <mat-sidenav #sidenav mode="side" class="sidenav" [(opened)]="isSidebarOpen">
+<nb-layout window>
+  <nb-layout-header fixed>
+    <a href="#" (click)="toggle()" class="content"
+    ><span class="material-icons"> format_list_bulleted </span></a
+  >
+  <app-serv-pillihuaman-header-home></app-serv-pillihuaman-header-home>
+  </nb-layout-header>
+  <nb-sidebar tag="menu-barapp" state="collapsed">
     <serv-pillihuaman-sidebar-home></serv-pillihuaman-sidebar-home>
-  </mat-sidenav>
-
-  <mat-sidenav-content>
-    <mat-toolbar color="primary">
-      <button mat-icon-button>
-        <mat-icon>menu</mat-icon>
-      </button>
-      <app-serv-pillihuaman-header-home></app-serv-pillihuaman-header-home>
-    </mat-toolbar>
-
-    <div class="content">
-      <router-outlet></router-outlet>
+  </nb-sidebar>
+  <nb-layout-column class="colored-column-basic" (click)="toggleout()">
+    <div >
+    <router-outlet></router-outlet>
     </div>
+  </nb-layout-column>
 
-    <!-- Footer agregado aquí -->
-    <app-serv-pillihuaman-footer-home></app-serv-pillihuaman-footer-home>
-  </mat-sidenav-content>
-</mat-sidenav-container>
+
+</nb-layout>
+
+

@@ -1,0 +1,56 @@
+<div class="container">
+  <nb-accordion multi="true">
+    <nb-accordion-item expanded="true" [disabled]="false">    
+        <h5>System Management</h5>
+      <nb-accordion-item-body>
+        <form [formGroup]="systemForm" class="responsive-form">
+  
+          <div class="form-group">
+            <input nbInput type="text" placeholder="System Name" formControlName="name" />
+            <div *ngIf="systemForm.get('name')?.invalid && systemForm.get('name')?.touched">
+              <small *ngIf="systemForm.get('name')?.errors?.['required']">Name is required.</small>
+            </div>
+          </div>
+      
+          <div class="form-group">
+            <input nbInput type="text" placeholder="Version" formControlName="version" />
+          </div>
+          <div class="col-12 d-flex flex-wrap justify-content-between">
+            <!-- Botón de búsqueda -->
+            <button nbButton status="primary" (click)="findSystems()" nbTooltip="Search for systems" title="Search">
+              <nb-icon icon="search-outline"></nb-icon>
+              <small class="button-text">Search</small>
+            </button>
+            
+            <!-- Botón de reset -->
+            <button nbButton status="secondary" (click)="resetForm()" nbTooltip="Reset the form" title="Reset">
+              <nb-icon icon="refresh-outline"></nb-icon>
+              <small class="button-text">Reset</small>
+            </button>
+            
+            <!-- Botón de nuevo -->
+            <button nbButton status="primary" (click)="onNewClick()" nbTooltip="Add a new system" title="New">
+              <nb-icon icon="plus-outline"></nb-icon>
+              <small class="button-text">New</small>
+            </button>
+          </div>
+        </form>
+      </nb-accordion-item-body>
+    </nb-accordion-item>
+    <nb-accordion-item expanded="true">
+      <nb-accordion-item-body>
+        <app-table-datasource
+          [datas]="datas"
+          [defaultColumns]="defaultColumnsInput"
+          (pageChange)="onPageChange($event)"
+          (deleteAction)="deleteSystem($event)"
+          (editAction)="editSystem($event)"
+          [typeOfSearch]="typeOfSearch"
+        ></app-table-datasource>
+      </nb-accordion-item-body>
+    </nb-accordion-item>
+  </nb-accordion>
+
+
+
+</div>

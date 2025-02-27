@@ -1,12 +1,11 @@
-import { CommonModule } from '@angular/common';
 import { Component } from '@angular/core';
-import { MatToolbarModule } from '@angular/material/toolbar';
+import { NbEvaIconsModule } from '@nebular/eva-icons';
+import { NbIconModule } from '@nebular/theme';
 
 @Component({
   selector: 'app-app-serv-pillihuaman-footer-home',
   standalone: true,
-  imports: [  CommonModule,
-    MatToolbarModule],
+  imports: [NbEvaIconsModule,NbIconModule],
   templateUrl: './app-serv-pillihuaman-footer-home.component.html',
   styleUrl: './app-serv-pillihuaman-footer-home.component.scss'
 })

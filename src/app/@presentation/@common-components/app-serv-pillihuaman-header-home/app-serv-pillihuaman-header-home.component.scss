@@ -2,47 +2,56 @@
 .header-components {
   display: flex;
   align-items: center;
-  justify-content: space-between;
-  padding: 0 20px;
-  width: 100%;
-  box-sizing: border-box;
+  justify-content: space-between; /* Distribute items evenly */
+  padding: 0 20px; /* Add left and right padding for better spacing */
+  width: 100%; /* Ensure it fills the entire header width */
+  box-sizing: border-box; /* Make sure padding is included in the total width */
+}
+
+.icon {
+  font-size: 24px;
+  margin: 0 10px;
+  cursor: pointer;
 }
 
 .theme-select {
   font-size: 14px;
   min-width: 150px;
-  flex-grow: 1;
-  margin-right: 10px;
+  flex-grow: 1; /* Allow it to grow proportionally */
+  margin-right: 10px; /* Spacing between select and icons */
 }
 
-/* Adjust icons for mobile */
+/* Make icons smaller on mobile */
 @media (max-width: 1024px) {
   .icon {
     font-size: 20px;
     margin: 0 8px;
   }
+
   .theme-select {
     font-size: 12px;
     min-width: 120px;
   }
 }
 
-/* Mobile adjustments */
+/* For mobile screens */
 @media (max-width: 768px) {
   .header-components {
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    padding: 10px 20px;
+    flex-direction: column; /* Stack elements vertically on mobile */
+    align-items: center; /* Center all items */
+    justify-content: center; /* Center the items */
+    padding: 10px 20px; /* Add padding on mobile to ensure space on all sides */
   }
+
   .icon {
     font-size: 18px;
     margin: 0 6px;
   }
+
   .theme-select {
     font-size: 12px;
-    width: 100%;
+    width: 100%; /* Make the select dropdown full width */
     margin-left: 0;
-    margin-bottom: 10px;
+    margin-bottom: 10px; /* Add spacing between select and icons */
   }
 }

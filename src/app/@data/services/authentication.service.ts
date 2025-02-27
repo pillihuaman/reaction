@@ -7,6 +7,8 @@ import { HttpClient, HttpHeaders, HttpParams } from '@angular/common/http';
 
 import { Router } from '@angular/router';
 
+
+import { NbToastrService, NbComponentStatus } from '@nebular/theme';
 import { Control } from '../model/general/control';;
 import { ModalService } from './modal.service';
 import { ResponseBody } from '../model/general/responseBody';
@@ -31,7 +33,7 @@ export class AuthenticationService extends AuthenticationRepository {
     private http: HttpClient,
     private router: Router,
     private modalRepository: ModalRepository,
-private modalService:ModalService
+    private toastrService: NbToastrService,private modalService:ModalService
   ) {
     super();
 

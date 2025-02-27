@@ -1,29 +1,41 @@
-import { Component, OnDestroy, OnInit } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
-import { first, Subscription } from 'rxjs';
+import { NbButtonModule, NbDialogConfig, NbDialogModule, NbDialogService, NbInputModule, NbSidebarService } from '@nebular/theme';
+import { first, Observable, Subscription, timer } from 'rxjs';
 import { AuthenticationRepository } from '../../../@domain/repository/repository/authentication.repository';
-import { MatDialog } from '@angular/material/dialog';
-import { User } from '../../../@domain/repository/models/user';
-import { CoreImportsModule } from '../../../core-imports';
-import { MatFormFieldModule } from '@angular/material/form-field';
-import { MatInputModule } from '@angular/material/input';
-import { MatButtonModule } from '@angular/material/button';
-import { CUSTOM_ELEMENTS_SCHEMA } from '@angular/compiler';
-import { CommonModule } from '@angular/common';
 
+import { AuthenticationService } from '../../../@data/services/authentication.service';
+import { ModalService } from '../../../@data/services/modal.service';
+import { ModalRepository } from '../../../@domain/repository/repository/modal.repository ';
+import { User } from '../../../@domain/repository/models/user';
 
 @Component({
   selector: 'app-login',
   templateUrl: './login.component.html',
   styleUrls: ['./login.component.scss'],
   standalone: true,
-  imports: [CommonModule, ReactiveFormsModule, MatFormFieldModule, MatInputModule, MatButtonModule]
-
+  imports: [ReactiveFormsModule, NbInputModule, NbButtonModule,NbDialogModule], // Asegúrate de que estos módulos estén aquí
+  providers: [NbSidebarService,NbDialogService,
+    { provide: AuthenticationRepository, useClass: AuthenticationService },
+    { provide: ModalRepository, useClass: ModalService },
+    {
+      provide: NbDialogConfig,
+      useValue: {
+        hasBackdrop: true,
+        backdropClass: 'dark-backdrop',
+        closeOnBackdropClick: true,
+        closeOnEsc: true,
+      },
+    },
+  ]
+  
 })
-export class LoginComponent implements OnInit, OnDestroy {
+export class LoginComponent implements OnInit {
   nombreEmpresa = 'Pillihuman Corporation app';
   estado: boolean = true;
+  cantidadUsuario: number = 3;
+  everySecond$: Observable<number> = timer(0, 100);
   appName: string = 'AlamodaPeru.com';
   logging: boolean = false;
   loginForm: FormGroup;
@@ -32,11 +44,13 @@ export class LoginComponent implements OnInit, OnDestroy {
   returnUrl: string = '/home';
 
   constructor(
+    private sidebarService: NbSidebarService,
     private formBuilder: FormBuilder,
     private router: Router,
     private authService: AuthenticationRepository,
-    private dialog: MatDialog
+    private dialogService: NbDialogService
   ) {
+    // Inicializa el formulario
     this.loginForm = this.formBuilder.group({
       user: ['', [Validators.required, Validators.minLength(4), Validators.maxLength(15)]],
       password: ['', [Validators.required, Validators.minLength(7), Validators.maxLength(30)]],
@@ -56,7 +70,9 @@ export class LoginComponent implements OnInit, OnDestroy {
         .login(this.f['user'].value, this.f['password'].value)
         .pipe(first())
         .subscribe((user: User) => {
+          //debugger;
           if (user) {
+
             this.router.navigate([this.returnUrl]);
           } else {
             this.hasError = true;
@@ -65,12 +81,10 @@ export class LoginComponent implements OnInit, OnDestroy {
 
       this.unsubscribe.push(loginSubscr);
     } catch (e) {
-      console.error("An error occurred:", e);
-      throw e;
+      //debuger;
+      console.error("An error occurred:", e); // Log the error to the console
+      throw e; // Rethrow
+    } finally {
     }
-  }
-
-  ngOnDestroy() {
-    this.unsubscribe.forEach(sub => sub.unsubscribe());
   }
 }

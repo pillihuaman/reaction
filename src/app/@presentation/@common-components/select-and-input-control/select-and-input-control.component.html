@@ -1,10 +1,8 @@
 <div *ngIf="isInput">
-  <input type="text" [(ngModel)]="inputValue" />
+  <input type="text" (input)="handleInput($event)" [(ngModel)]="inputValue" />
 </div>
-
 <div *ngIf="isSelect">
-  <select [(ngModel)]="inputValue" (change)="handleSelect($event)">
-    <option value="">Seleccione una opción</option>
-    <option *ngFor="let item of data" [value]="item">{{ item }}</option>
+  <select (change)="handleSelect($event)">
+    <!-- Select options here -->
   </select>
 </div>

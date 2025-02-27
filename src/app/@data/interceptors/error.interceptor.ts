@@ -10,6 +10,7 @@ import {
 } from '@angular/common/http';
 import { catchError, map } from 'rxjs/operators';
 import { ModalService } from '../services/modal.service';
+import { NbComponentStatus } from '@nebular/theme';
 import { CustomHttpErrorResponse } from '../model/general/CustomHttpErrorResponse';
 
 @Injectable({ providedIn: 'root' })
@@ -32,7 +33,7 @@ export class ErrorInterceptor implements HttpInterceptor {
           if (httpError.status === 401) {
             // Handle Unauthorized (e.g., redirect to login)
           } else if (httpError.status === 500) {
-          //const nbComponentStatus: NbComponentStatus = 'danger';
+            const nbComponentStatus: NbComponentStatus = 'danger';
             // Check if the response includes a specific structure for 500 errors
             if (err.error && err.error.status === 422 && err.error.data && err.error.data.payload) {
               // Extract the relevant information from the response
@@ -45,13 +46,13 @@ export class ErrorInterceptor implements HttpInterceptor {
                 // const errorMessages = payload.map(item => item.propertyPath.leafNode.name);
                 //this.modalService.showToast(nbComponentStatus, errorMessages.join(', '));
               } else {
-               //his.modalService.showToast(nbComponentStatus, errorMessage, "");
+                this.modalService.showToast(nbComponentStatus, errorMessage, "");
               }
             } else
               if (err.error.errors && err.error.errors.length > 0) {
-                //is.modalService.showToast(nbComponentStatus, err.error.errors[0], "");
+                this.modalService.showToast(nbComponentStatus, err.error.errors[0], "");
               } else {
-                //is.modalService.showToast(nbComponentStatus, 'Internal Server Error', "");
+                this.modalService.showToast(nbComponentStatus, 'Internal Server Error', "");
               }
 
           }
@@ -61,13 +62,13 @@ export class ErrorInterceptor implements HttpInterceptor {
             this.modalService.showToast(nbComponentStatus, err.error.errors[0]);
           } */else if (httpError.status === 404) {
             // Handle Not Found
-       //   const nbComponentStatus: NbComponentStatus = 'danger';
-         // this.modalService.showToast(nbComponentStatus, 'Resource Not Found', "");
+            const nbComponentStatus: NbComponentStatus = 'danger';
+            this.modalService.showToast(nbComponentStatus, 'Resource Not Found', "");
           }
           else if (httpError.status === 400) {
             // Handle Not Found
-           //onst nbComponentStatus: NbComponentStatus = 'danger';
-              //this.modalService.showToast(nbComponentStatus, 'Internal Server Error',httpError.error.detail);
+            const nbComponentStatus: NbComponentStatus = 'danger';
+                this.modalService.showToast(nbComponentStatus, 'Internal Server Error',httpError.error.detail);
           }
           // You can also re-throw the error to propagate it further
           return throwError(err);

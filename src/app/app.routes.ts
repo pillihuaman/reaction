@@ -1,9 +1,13 @@
 import { Routes } from '@angular/router';
+import { AuthComponent } from './@presentation/auth/auth.component';
 import { LoginComponent } from './@presentation/auth/login/login.component';
 import { UserRegisterComponent } from './@presentation/auth/user-register/user-register.component';
-import { AuthGuard } from './@data/interceptors/auth.guard';
-import { AuthComponent } from './@presentation/auth/auth.component';
 import { EmployeeComponent } from './@presentation/pages/support/employee/employee.component';
+import { AuthGuard } from './@data/interceptors/auth.guard';
+import { StockComponent } from './@presentation/pages/support/stock/stock.component';
+import { SystemManagementComponent } from './@presentation/pages/support/system-management/system-management.component';
+
+
 export const routes: Routes = [
   {
     path: 'auth',
@@ -16,17 +20,18 @@ export const routes: Routes = [
       },
     ],
   },
-  
+    {
+      path: 'home',
+      loadComponent: () =>
+        import('./@presentation/home/home.component').then((c) => c.HomeComponent),
+      //canActivate: [AuthGuard],
+    },
     {
       path: 'pages',
       loadComponent: () =>
         import('./@presentation/pages/page.component').then((c) => c.PageComponent),
        canActivate: [AuthGuard],
       children: [
-        {
-          path: 'employee',
-          component: EmployeeComponent,
-        }
       /*  {
           path: 'register-product',
           component: RegisterProductComponent,
@@ -58,7 +63,7 @@ export const routes: Routes = [
         {
           path: 'generate-random-color-imagen',
           component: CreateRandonImagenColorComponent,
-        },
+        },*/
         {
           path: 'system',
           component: SystemManagementComponent,
@@ -70,7 +75,7 @@ export const routes: Routes = [
         {
           path: 'stock',
           component: StockComponent,
-        },*/
+        },
       ],
       
     },

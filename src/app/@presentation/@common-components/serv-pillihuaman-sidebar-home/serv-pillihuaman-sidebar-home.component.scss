@@ -1,11 +1,22 @@
-mat-nav-list {
-  width: 250px;
+::ng-deep .overlay-sidebar {
+  position: fixed;
+  top: 0;
+  left: -250px;                  /* Initially hidden off-screen to the left */
+  width: 250px;                  /* Set the width of the sidebar */
+  height: 100vh;                 /* Full viewport height */
+  background-color: rgba(0, 0, 0, 0.7);  /* Semi-transparent background */
+  transition: transform 0.3s ease;    /* Smooth transition for sliding */
+  z-index: 9999;                 /* Ensure it appears above other content */
 }
 
-mat-list-item {
-  cursor: pointer;
+::ng-deep nb-sidebar[tag="menu-barapp"].expanded {
+  transform: translateX(250px);  /* Slide the sidebar in */
 }
 
-mat-icon {
-  margin-right: 10px;
+::ng-deep nb-layout-column.scrollable-content {
+  transition: opacity 0.3s ease;  /* Smooth opacity transition */
+}
+
+::ng-deep nb-layout-column.scrollable-content.overlay-visible {
+  opacity: 0.3;                  /* Make the content fade when sidebar is visible */
 }
