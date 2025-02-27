@@ -1,0 +1,35 @@
+name: Deploy Angular App
+
+on:
+  push:
+    branches:
+      - main  # Triggers deployment when code is pushed to 'main'
+
+jobs:
+  build-and-deploy:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: 20
+
+      - name: Install dependencies
+        run: npm ci  # Installs dependencies using package-lock.json
+
+      - name: Build Angular app
+        run: npm run build -- --configuration=production --base-href=/reaction-sport/
+
+      - name: Disable Jekyll (Required for GitHub Pages)
+        run: touch dist/reaction-sport/browser/.nojekyll
+
+      - name: Deploy to GitHub Pages
+        uses: JamesIves/github-pages-deploy-action@v4
+        with:
+          branch: gh-pages  # Deploy to the 'gh-pages' branch
+          folder: dist/reaction-sport/browser  # Deploy the built Angular app
+          clean: true  # Removes old files before deploying
