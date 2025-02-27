@@ -31,5 +31,5 @@ jobs:
         uses: JamesIves/github-pages-deploy-action@v4
         with:
           branch: gh-pages  # Deploy to the 'gh-pages' branch
-          folder: dist/reaction-sport  # Deploy the built Angular app
+          folder: dist/reaction-sport/browser  # Deploy the built Angular app
           clean: true  # Removes old files before deploying
